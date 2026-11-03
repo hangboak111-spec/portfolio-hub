@@ -120,6 +120,101 @@
             scrollbar-width: thin;
             scrollbar-color: #cbd5e1 transparent;
         }
+
+        /* hidden 속성이 flex 같은 클래스보다 항상 우선하도록 */
+        [hidden] { display: none !important; }
+
+        /* ===== 현재 위치 표시 ===== */
+        /* 상단 메뉴: 지금 보고 있는 메뉴에 파란 점 */
+        .nav-link { position: relative; }
+        .nav-link.is-active { color: #2563eb; }
+        .nav-link.is-active::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -8px;
+            width: 6px;
+            height: 6px;
+            border-radius: 9999px;
+            background: #2563eb;
+            transform: translateX(-50%);
+        }
+
+        /* 오른쪽 아래 위치 아이콘 */
+        .spy-text {
+            display: block;
+            overflow: hidden;
+            max-width: 240px;
+            margin-left: 0.75rem;
+            padding-right: 1rem;
+            transition: max-width .35s ease, opacity .25s ease, margin .35s ease, padding .35s ease;
+        }
+        @media (max-width: 639px) {
+            .spy-text { max-width: 0; opacity: 0; margin-left: 0; padding-right: 0; }
+            .spy.is-peek .spy-text { max-width: 180px; opacity: 1; margin-left: 0.75rem; padding-right: 1rem; }
+        }
+        .spy-icon.is-pop { animation: spyPop .45s ease; }
+        @keyframes spyPop {
+            0% { transform: scale(.6); }
+            60% { transform: scale(1.12); }
+            100% { transform: scale(1); }
+        }
+        #spy-menu:not([hidden]) { animation: spyMenuIn .18s ease-out; }
+        @keyframes spyMenuIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 섹션 목록 */
+        .spy-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            width: 100%;
+            padding: 0.4rem 0.75rem 0.4rem 0.4rem;
+            border: 0;
+            border-radius: 0.875rem;
+            background: transparent;
+            color: #334155;
+            font: inherit;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-align: left;
+            cursor: pointer;
+            transition: background-color .15s;
+        }
+        .spy-item:hover { background: #f1f5f9; }
+        .spy-item:focus-visible { outline: 2px solid #3b82f6; outline-offset: -2px; }
+        .spy-item-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 9999px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .spy-item-label { flex: 1; min-width: 0; }
+        .spy-item-now {
+            display: none;
+            font-size: 0.65rem;
+            font-weight: 800;
+            color: #2563eb;
+            background: #dbeafe;
+            padding: 0.125rem 0.5rem;
+            border-radius: 9999px;
+            white-space: nowrap;
+        }
+        .spy-item.is-current { background: #eff6ff; color: #1d4ed8; font-weight: 700; }
+        .spy-item.is-current .spy-item-icon { background: #0f172a; }
+        .spy-item.is-current .spy-item-now { display: inline-block; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .spy-icon.is-pop, #spy-menu:not([hidden]) { animation: none; }
+            .spy-text { transition: none; }
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-blue-500 selection:text-white">
@@ -131,9 +226,9 @@
                 <span class="text-blue-600">Dev</span>.이씨표류기
             </a>
             <div class="flex gap-4 md:gap-6 font-semibold text-slate-600 text-sm md:text-base">
-                <a href="#about" class="hover:text-blue-600 transition-colors">About</a>
-                <a href="#skills" class="hover:text-blue-600 transition-colors">Skills</a>
-                <a href="#projects" class="hover:text-blue-600 transition-colors">Projects</a>
+                <a href="#about" data-nav="about" class="nav-link hover:text-blue-600 transition-colors">About</a>
+                <a href="#skills" data-nav="skills" class="nav-link hover:text-blue-600 transition-colors">Skills</a>
+                <a href="#projects" data-nav="projects" class="nav-link hover:text-blue-600 transition-colors">Projects</a>
             </div>
         </div>
     </nav>
@@ -144,7 +239,7 @@
     <main id="view-home">
 
     <!-- 1. Hero Section -->
-    <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-900 pt-20">
+    <section data-spy="홈" data-spy-icon="🏠" class="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-900 pt-20">
         <div class="blob bg-blue-600 w-96 h-96 rounded-full top-10 left-10"></div>
         <div class="blob bg-purple-600 w-80 h-80 rounded-full bottom-10 right-10" style="animation-delay: -5s;"></div>
         
@@ -172,7 +267,7 @@
     </section>
 
     <!-- 2. About & Profile Section -->
-    <section id="about" class="py-24 px-6 relative overflow-hidden">
+    <section data-spy="About" data-spy-icon="👤" id="about" class="py-24 px-6 relative overflow-hidden">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 
@@ -281,7 +376,7 @@
     </section>
 
     <!-- 3. 역량 Section -->
-    <section id="skills" class="py-24 px-6 bg-slate-900 text-white relative">
+    <section data-spy="핵심 역량" data-spy-icon="⚡" id="skills" class="py-24 px-6 bg-slate-900 text-white relative">
         <div class="absolute inset-0 opacity-50 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-900 via-slate-900 to-slate-900"></div>
 
         <div class="max-w-7xl mx-auto relative z-10">
@@ -337,7 +432,7 @@
     </section>
 
     <!-- 4. 결과물 Section -->
-    <section id="projects" class="py-24 px-6 bg-slate-50">
+    <section data-spy="Daily Projects" data-spy-icon="📁" id="projects" class="py-24 px-6 bg-slate-50">
         <div class="max-w-7xl mx-auto">
             <div class="mb-16 text-center">
                 <h2 class="text-4xl font-extrabold text-slate-900 tracking-tight mb-4">Daily Projects</h2>
@@ -593,7 +688,7 @@
     </section>
 
     <!-- 5. Contact Section -->
-    <section class="py-24 px-6 relative overflow-hidden bg-white border-t border-slate-100">
+    <section data-spy="Contact" data-spy-icon="✉️" class="py-24 px-6 relative overflow-hidden bg-white border-t border-slate-100">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[400px] bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 rounded-full blur-[100px] opacity-50 z-0 pointer-events-none"></div>
         
         <div class="relative z-10 max-w-3xl mx-auto text-center">
@@ -619,7 +714,7 @@
     <main id="view-day1" hidden>
 
         <!-- 헤더 -->
-        <section class="relative overflow-hidden bg-slate-900 pt-32 pb-20 px-6">
+        <section data-spy="Day 1 소개" data-spy-icon="🏁" class="relative overflow-hidden bg-slate-900 pt-32 pb-20 px-6">
             <div class="blob bg-blue-600 w-80 h-80 rounded-full -top-10 -left-10"></div>
             <div class="blob bg-purple-600 w-72 h-72 rounded-full bottom-0 right-0" style="animation-delay: -5s;"></div>
             <div class="absolute inset-0 dot-pattern z-0"></div>
@@ -667,7 +762,7 @@
         </section>
 
         <!-- A. Day 1에 한 일 -->
-        <section class="py-20 px-6">
+        <section data-spy="Day 1에 한 일" data-spy-icon="🗂️" class="py-20 px-6">
             <div class="max-w-6xl mx-auto">
                 <span class="text-blue-600 font-bold uppercase tracking-widest text-sm block mb-2">Overview</span>
                 <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 mb-10">Day 1에 한 일</h2>
@@ -734,7 +829,7 @@
         </section>
 
         <!-- 01. Canvas 문서 : 시니어 AI 교육 기획안 -->
-        <section class="py-20 px-6 bg-white border-y border-slate-100">
+        <section data-spy="01 · Canvas 문서" data-spy-icon="📝" class="py-20 px-6 bg-white border-y border-slate-100">
             <div class="max-w-6xl mx-auto">
                 <div class="flex items-center gap-3 mb-3">
                     <span class="w-9 h-9 rounded-xl bg-blue-600 text-white text-sm font-extrabold flex items-center justify-center">01</span>
@@ -850,7 +945,7 @@
         </section>
 
         <!-- 02. 영상 분석 + Canvas 발표자료 -->
-        <section class="py-20 px-6">
+        <section data-spy="02 · 영상 분석 · 발표" data-spy-icon="📊" class="py-20 px-6">
             <div class="max-w-6xl mx-auto">
                 <div class="flex items-center gap-3 mb-3">
                     <span class="w-9 h-9 rounded-xl bg-indigo-600 text-white text-sm font-extrabold flex items-center justify-center">02</span>
@@ -938,7 +1033,7 @@
         </section>
 
         <!-- 03. 이미지 생성 -->
-        <section class="py-20 px-6 bg-white border-y border-slate-100">
+        <section data-spy="03 · 이미지 생성" data-spy-icon="🖼️" class="py-20 px-6 bg-white border-y border-slate-100">
             <div class="max-w-6xl mx-auto">
                 <div class="flex items-center gap-3 mb-3">
                     <span class="w-9 h-9 rounded-xl bg-pink-600 text-white text-sm font-extrabold flex items-center justify-center">03</span>
@@ -979,7 +1074,7 @@
         </section>
 
         <!-- 04. 영상 생성 & 05. 음악 생성 -->
-        <section class="py-20 px-6">
+        <section data-spy="04·05 · 영상·음악 생성" data-spy-icon="🎬" class="py-20 px-6">
             <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
                 <!-- 04 영상 -->
                 <div>
@@ -1048,7 +1143,7 @@
         </section>
 
         <!-- 기능별 정리 -->
-        <section class="py-20 px-6 bg-white border-t border-slate-100">
+        <section data-spy="기능별로 확인한 점" data-spy-icon="✅" class="py-20 px-6 bg-white border-t border-slate-100">
             <div class="max-w-6xl mx-auto">
                 <span class="text-blue-600 font-bold uppercase tracking-widest text-sm block mb-2">Takeaways</span>
                 <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 mb-10">기능별로 확인한 점</h2>
@@ -1098,7 +1193,7 @@
     <main id="view-day2" hidden>
 
         <!-- 헤더 -->
-        <section class="relative overflow-hidden bg-slate-900 pt-32 pb-20 px-6">
+        <section data-spy="Day 2 소개" data-spy-icon="🏁" class="relative overflow-hidden bg-slate-900 pt-32 pb-20 px-6">
             <div class="blob bg-blue-600 w-80 h-80 rounded-full -top-10 -left-10"></div>
             <div class="blob bg-purple-600 w-72 h-72 rounded-full bottom-0 right-0" style="animation-delay: -5s;"></div>
             <div class="absolute inset-0 dot-pattern z-0"></div>
@@ -1120,9 +1215,19 @@
                     포트폴리오 허브 구축 &amp;<br>
                     <span class="gradient-text">자율주행 버스 게임</span>
                 </h1>
-                <p class="text-base md:text-xl text-slate-300 font-medium max-w-3xl leading-relaxed mb-12">
+                <p class="text-base md:text-xl text-slate-300 font-medium max-w-3xl leading-relaxed mb-8">
                     Day 2에는 포트폴리오 허브를 완성하고, 기획서 작성부터 네 차례의 피드백까지 거쳐 3D 방치형 버스 게임을 만들었습니다.
                 </p>
+
+                <div class="flex flex-wrap gap-3 mb-12">
+                    <button type="button" data-game-jump class="inline-flex items-center gap-2 bg-white text-slate-900 font-bold text-sm md:text-base py-3 px-6 rounded-xl shadow-lg hover:bg-blue-50 transition-colors">
+                        <span aria-hidden="true">🎮</span> 게임 바로 해보기
+                    </button>
+                    <a href="https://hangboak111-spec.github.io/final_bus_game/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white font-bold text-sm md:text-base py-3 px-6 rounded-xl backdrop-blur-md hover:bg-white/20 transition-colors">
+                        새 창에서 열기
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5h5v5m0-5L10 14M19 14v5H5V5h5"></path></svg>
+                    </a>
+                </div>
 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div class="bg-white/5 border border-white/10 rounded-2xl p-5 backdrop-blur-sm">
@@ -1146,7 +1251,7 @@
         </section>
 
         <!-- A. Day 2에 한 일 -->
-        <section class="py-20 px-6">
+        <section data-spy="Day 2에 한 일" data-spy-icon="🗂️" class="py-20 px-6">
             <div class="max-w-6xl mx-auto">
                 <span class="text-blue-600 font-bold uppercase tracking-widest text-sm block mb-2">Overview</span>
                 <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 mb-10">Day 2에 한 일</h2>
@@ -1182,14 +1287,103 @@
                                 <span class="px-3 py-1 bg-slate-100 rounded-lg text-slate-700 font-medium">Prompt Engineering</span>
                             </div>
                             <p class="bg-purple-50 text-purple-800 p-4 rounded-2xl border border-purple-100 font-medium">단순 방치형 타이밍 게임에서 버스 진화·돌발 이벤트·우주 모드까지 갖춘 3D 하이브리드 게임으로 확장</p>
+                            <button type="button" data-game-jump class="inline-flex items-center gap-2 text-sm font-bold text-purple-700 bg-white border border-purple-200 rounded-xl px-4 py-2 hover:bg-purple-50 transition-colors">
+                                <span aria-hidden="true">🎮</span> 게임 플레이하기
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- 게임 직접 해보기 (GitHub Pages에 올린 게임을 페이지 안에서 실행) -->
+        <section id="game-play" data-spy="게임 플레이" data-spy-icon="🎮" class="py-20 px-6 bg-slate-900 relative overflow-hidden">
+            <div class="absolute inset-0 dot-pattern"></div>
+            <div class="blob bg-blue-600 w-72 h-72 rounded-full -top-24 -left-16"></div>
+            <div class="blob bg-purple-600 w-72 h-72 rounded-full -bottom-24 -right-16" style="animation-delay: -5s;"></div>
+
+            <div class="relative z-10 max-w-6xl mx-auto">
+                <span class="text-blue-300 font-bold uppercase tracking-widest text-sm block mb-2">Play</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-3">직접 플레이해 보기</h2>
+                <p class="text-slate-300 mb-10 leading-relaxed">GitHub Pages에 배포한 자율주행 버스 게임을 이 페이지에서 바로 해볼 수 있습니다.</p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-6">
+                    <div>
+                        <div id="game-stage" class="relative rounded-3xl overflow-hidden border border-white/10 bg-slate-950 aspect-[3/4] sm:aspect-video shadow-2xl">
+                            <!-- 시작 전 화면: 누르면 게임을 불러옴 -->
+                            <button type="button" id="game-start" class="absolute inset-0 w-full h-full flex flex-col items-center justify-center gap-5 text-white group overflow-hidden" style="background: linear-gradient(180deg, #1e1b4b 0%, #0f172a 55%, #334155 55%, #1e293b 100%);">
+                                <span class="absolute left-0 right-0 bottom-[7%] h-1 opacity-40" aria-hidden="true" style="background: repeating-linear-gradient(90deg, #fde047 0 26px, transparent 26px 48px);"></span>
+                                <svg viewBox="0 0 200 100" class="relative w-40 sm:w-52 drop-shadow-2xl group-hover:-translate-y-1 transition-transform" aria-hidden="true">
+                                    <rect x="14" y="20" width="172" height="58" rx="10" fill="#2563eb"/>
+                                    <rect x="14" y="60" width="172" height="5" fill="#1e40af"/>
+                                    <g fill="#dbeafe">
+                                        <rect x="24" y="29" width="23" height="20" rx="3"/>
+                                        <rect x="52" y="29" width="23" height="20" rx="3"/>
+                                        <rect x="80" y="29" width="23" height="20" rx="3"/>
+                                        <rect x="108" y="29" width="23" height="20" rx="3"/>
+                                        <rect x="136" y="29" width="23" height="20" rx="3"/>
+                                        <rect x="165" y="27" width="15" height="28" rx="3"/>
+                                    </g>
+                                    <rect x="179" y="68" width="7" height="5" rx="1" fill="#fde047"/>
+                                    <circle cx="46" cy="79" r="11" fill="#0f172a"/><circle cx="46" cy="79" r="4" fill="#94a3b8"/>
+                                    <circle cx="152" cy="79" r="11" fill="#0f172a"/><circle cx="152" cy="79" r="4" fill="#94a3b8"/>
+                                </svg>
+                                <span class="relative text-xl sm:text-2xl font-extrabold tracking-tight">자율주행 버스 게임 3D</span>
+                                <span class="relative inline-flex items-center gap-2 bg-white text-slate-900 font-bold py-3 px-7 rounded-full shadow-xl group-hover:bg-blue-50 transition-colors">
+                                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.14v13.72a1 1 0 001.5.86l11-6.86a1 1 0 000-1.72l-11-6.86A1 1 0 008 5.14z"/></svg>
+                                    게임 시작
+                                </span>
+                                <span class="relative text-xs text-slate-300">누르면 게임을 불러옵니다</span>
+                            </button>
+                            <iframe id="game-frame" title="자율주행 버스 게임 3D" class="absolute inset-0 w-full h-full border-0 bg-slate-950" allow="fullscreen; autoplay" allowfullscreen hidden></iframe>
+                        </div>
+
+                        <div class="flex flex-wrap gap-3 mt-4">
+                            <button type="button" id="game-fullscreen" class="inline-flex items-center gap-2 text-sm font-bold text-white bg-white/10 border border-white/20 rounded-xl px-4 py-2 hover:bg-white/20 transition-colors" hidden>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"></path></svg>
+                                전체 화면
+                            </button>
+                            <button type="button" id="game-close" class="inline-flex items-center gap-2 text-sm font-bold text-white bg-white/10 border border-white/20 rounded-xl px-4 py-2 hover:bg-white/20 transition-colors" hidden>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 6l12 12M18 6L6 18"></path></svg>
+                                게임 닫기
+                            </button>
+                            <a href="https://hangboak111-spec.github.io/final_bus_game/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-sm font-bold text-slate-900 bg-white rounded-xl px-4 py-2 hover:bg-blue-50 transition-colors">
+                                새 창에서 열기
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5h5v5m0-5L10 14M19 14v5H5V5h5"></path></svg>
+                            </a>
+                        </div>
+                        <p class="sm:hidden text-xs text-slate-400 mt-3">휴대폰에서는 '새 창에서 열기'로 하면 더 크게 즐길 수 있어요.</p>
+                    </div>
+
+                    <!-- 조작법 -->
+                    <aside class="rounded-3xl p-6 bg-white/5 border border-white/10 backdrop-blur-sm text-sm text-slate-300 h-fit">
+                        <p class="text-xs font-bold text-blue-300 uppercase tracking-widest mb-4">조작법</p>
+                        <dl class="space-y-4">
+                            <div>
+                                <dt><kbd class="inline-block px-2 py-0.5 rounded-md bg-white/10 border border-white/20 text-white font-bold text-xs">SPACE</kbd> <span class="text-slate-400">또는 정차 버튼</span></dt>
+                                <dd class="mt-1.5">정류장·보행자 앞 정차, 우주 모드에서는 부스터 점프</dd>
+                            </div>
+                            <div>
+                                <dt class="font-bold text-white">클릭 · 터치</dt>
+                                <dd class="mt-1.5">상점 열기, 업그레이드 구매, 세이브</dd>
+                            </div>
+                            <div>
+                                <dt class="font-bold text-white">마우스 드래그</dt>
+                                <dd class="mt-1.5">3D 카메라 회전</dd>
+                            </div>
+                            <div>
+                                <dt><kbd class="inline-block px-2 py-0.5 rounded-md bg-white/10 border border-white/20 text-white font-bold text-xs">P</kbd> <span class="text-slate-400">× 3번</span></dt>
+                                <dd class="mt-1.5">개발자 모드 (모든 업그레이드 무료)</dd>
+                            </div>
+                        </dl>
+                        <p class="mt-6 pt-4 border-t border-white/10 text-xs text-slate-400 leading-relaxed">키보드가 반응하지 않으면 게임 화면을 한 번 클릭해 주세요.</p>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
         <!-- B. 진행 방식 -->
-        <section class="py-20 px-6 bg-white border-y border-slate-100">
+        <section data-spy="개발 과정" data-spy-icon="🛠️" class="py-20 px-6 bg-white border-y border-slate-100">
             <div class="max-w-6xl mx-auto">
                 <span class="text-blue-600 font-bold uppercase tracking-widest text-sm block mb-2">Process</span>
                 <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 mb-10">게임은 이렇게 만들었습니다</h2>
@@ -1220,7 +1414,7 @@
         </section>
 
         <!-- C. 기획서 비교 -->
-        <section class="py-20 px-6">
+        <section data-spy="기획서 비교" data-spy-icon="📋" class="py-20 px-6">
             <div class="max-w-6xl mx-auto">
                 <span class="text-blue-600 font-bold uppercase tracking-widest text-sm block mb-2">Game Design Doc</span>
                 <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 mb-4">기획서 비교: 최초 → 최종</h2>
@@ -1310,7 +1504,7 @@
         </section>
 
         <!-- D. 개발 타임라인 -->
-        <section class="py-20 px-6 bg-white border-y border-slate-100">
+        <section data-spy="피드백 타임라인" data-spy-icon="🔁" class="py-20 px-6 bg-white border-y border-slate-100">
             <div class="max-w-6xl mx-auto">
                 <span class="text-blue-600 font-bold uppercase tracking-widest text-sm block mb-2">Iteration</span>
                 <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 mb-12">피드백 4회로 진화한 과정</h2>
@@ -1405,7 +1599,7 @@
         </section>
 
         <!-- E. 버스 외형 진화 -->
-        <section class="py-20 px-6">
+        <section data-spy="버스 4단계 진화" data-spy-icon="🚌" class="py-20 px-6">
             <div class="max-w-6xl mx-auto">
                 <span class="text-blue-600 font-bold uppercase tracking-widest text-sm block mb-2">Evolution</span>
                 <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 mb-4">한국형 버스 4단계 진화</h2>
@@ -1525,7 +1719,7 @@
         </section>
 
         <!-- F. 우주 모드 -->
-        <section class="py-20 px-6 bg-white border-y border-slate-100">
+        <section data-spy="우주 모드" data-spy-icon="🚀" class="py-20 px-6 bg-white border-y border-slate-100">
             <div class="max-w-6xl mx-auto">
                 <div class="relative overflow-hidden bg-slate-900 rounded-[2.5rem] p-8 md:p-12">
                     <div class="absolute inset-0 dot-pattern"></div>
@@ -1560,7 +1754,7 @@
         </section>
 
         <!-- G. 숫자로 보는 밸런스 -->
-        <section class="py-20 px-6">
+        <section data-spy="숫자로 보는 밸런스" data-spy-icon="🔢" class="py-20 px-6">
             <div class="max-w-6xl mx-auto">
                 <span class="text-blue-600 font-bold uppercase tracking-widest text-sm block mb-2">Numbers</span>
                 <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 mb-10">숫자로 보는 게임 밸런스</h2>
@@ -1595,7 +1789,7 @@
         </section>
 
         <!-- H. 다 됐다는 기준 -->
-        <section class="py-20 px-6 bg-white border-t border-slate-100">
+        <section data-spy="다 됐다는 기준" data-spy-icon="✅" class="py-20 px-6 bg-white border-t border-slate-100">
             <div class="max-w-6xl mx-auto">
                 <span class="text-blue-600 font-bold uppercase tracking-widest text-sm block mb-2">Definition of Done</span>
                 <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 mb-10">다 됐다는 기준 (최종 기획서)</h2>
@@ -1716,6 +1910,293 @@
 
             window.addEventListener('hashchange', render);
             render();
+        })();
+    </script>
+
+    <!-- 현재 위치 표시: 지금 보고 있는 섹션의 아이콘과 진행률 (누르면 섹션 목록) -->
+    <div id="spy" class="spy fixed z-40 right-4 bottom-4 sm:right-6 sm:bottom-6" hidden>
+        <div id="spy-menu" class="absolute bottom-full right-0 mb-3 w-64 max-w-[calc(100vw-2rem)] bg-white rounded-2xl shadow-2xl border border-slate-200 p-2" hidden>
+            <p class="px-3 pt-2 pb-2 text-[11px] font-extrabold tracking-widest text-slate-400 uppercase">이 페이지의 구성</p>
+            <ol id="spy-list" class="max-h-[60vh] overflow-y-auto space-y-0.5"></ol>
+        </div>
+        <button id="spy-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="spy-menu" class="flex items-center bg-white/95 backdrop-blur border border-slate-200 shadow-xl rounded-full p-1.5 hover:shadow-2xl transition-shadow">
+            <span class="relative w-11 h-11 shrink-0">
+                <svg class="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 44 44" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="spyGrad" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0" stop-color="#3b82f6"/>
+                            <stop offset=".5" stop-color="#8b5cf6"/>
+                            <stop offset="1" stop-color="#ec4899"/>
+                        </linearGradient>
+                    </defs>
+                    <circle cx="22" cy="22" r="20" fill="none" stroke="#e2e8f0" stroke-width="3"/>
+                    <circle id="spy-ring" cx="22" cy="22" r="20" fill="none" stroke="url(#spyGrad)" stroke-width="3" stroke-linecap="round" stroke-dasharray="125.66" stroke-dashoffset="125.66"/>
+                </svg>
+                <span id="spy-icon" class="spy-icon absolute inset-[5px] rounded-full bg-slate-900 flex items-center justify-center text-base" aria-hidden="true">🏠</span>
+            </span>
+            <span class="spy-text text-left">
+                <span id="spy-step" class="block text-[10px] font-extrabold tracking-widest text-blue-600">1 / 5</span>
+                <span id="spy-label" class="block text-sm font-bold text-slate-800 whitespace-nowrap">홈</span>
+            </span>
+        </button>
+    </div>
+
+    <script>
+        (function () {
+            var spy = document.getElementById('spy');
+            var btn = document.getElementById('spy-btn');
+            var menu = document.getElementById('spy-menu');
+            var list = document.getElementById('spy-list');
+            var iconEl = document.getElementById('spy-icon');
+            var stepEl = document.getElementById('spy-step');
+            var labelEl = document.getElementById('spy-label');
+            var ring = document.getElementById('spy-ring');
+            var navLinks = document.querySelectorAll('.nav-link');
+            var CIRC = 2 * Math.PI * 20;
+            var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+            var sections = [];
+            var current = -1;
+            var currentView = null;
+            var peekTimer = null;
+            var ticking = false;
+
+            function activeView() {
+                var views = document.querySelectorAll('main');
+                for (var i = 0; i < views.length; i++) {
+                    if (!views[i].hidden) return views[i];
+                }
+                return null;
+            }
+
+            // 현재 화면(메인 / Day 1 / Day 2)의 섹션으로 목록을 다시 만듦
+            function build() {
+                currentView = activeView();
+                sections = currentView ? Array.prototype.slice.call(currentView.querySelectorAll('[data-spy]')) : [];
+                while (list.firstChild) list.removeChild(list.firstChild);
+                sections.forEach(function (sec, i) {
+                    var li = document.createElement('li');
+                    var b = document.createElement('button');
+                    b.type = 'button';
+                    b.className = 'spy-item';
+                    b.setAttribute('data-index', String(i));
+                    var ic = document.createElement('span');
+                    ic.className = 'spy-item-icon';
+                    ic.textContent = sec.getAttribute('data-spy-icon') || '•';
+                    var tx = document.createElement('span');
+                    tx.className = 'spy-item-label';
+                    tx.textContent = sec.getAttribute('data-spy');
+                    var now = document.createElement('span');
+                    now.className = 'spy-item-now';
+                    now.textContent = '보는 중';
+                    b.appendChild(ic);
+                    b.appendChild(tx);
+                    b.appendChild(now);
+                    li.appendChild(b);
+                    list.appendChild(li);
+                });
+                spy.hidden = sections.length === 0;
+                current = -1;
+                update();
+            }
+
+            function update() {
+                ticking = false;
+                if (!sections.length) return;
+                var line = window.innerHeight * 0.4;
+                var idx = 0;
+                for (var i = 0; i < sections.length; i++) {
+                    if (sections[i].getBoundingClientRect().top <= line) idx = i;
+                }
+                var max = document.documentElement.scrollHeight - window.innerHeight;
+                if (max > 0 && window.scrollY >= max - 2) idx = sections.length - 1;
+                var p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 1;
+                ring.style.strokeDashoffset = (CIRC * (1 - p)).toFixed(2);
+                if (idx !== current) setCurrent(idx);
+            }
+
+            function setCurrent(idx) {
+                current = idx;
+                var sec = sections[idx];
+                var label = sec.getAttribute('data-spy');
+                iconEl.textContent = sec.getAttribute('data-spy-icon') || '•';
+                stepEl.textContent = (idx + 1) + ' / ' + sections.length;
+                labelEl.textContent = label;
+                btn.setAttribute('aria-label', '지금 보는 부분: ' + label + ' (' + (idx + 1) + '/' + sections.length + '). 누르면 섹션 목록이 열립니다');
+
+                var items = list.querySelectorAll('.spy-item');
+                for (var i = 0; i < items.length; i++) {
+                    var on = i === idx;
+                    items[i].classList.toggle('is-current', on);
+                    if (on) items[i].setAttribute('aria-current', 'true');
+                    else items[i].removeAttribute('aria-current');
+                }
+
+                if (!reduceMotion) {
+                    iconEl.classList.remove('is-pop');
+                    void iconEl.offsetWidth;
+                    iconEl.classList.add('is-pop');
+                }
+
+                // 휴대폰에서는 섹션이 바뀔 때 이름을 잠깐 펼쳐 보여줌
+                spy.classList.add('is-peek');
+                clearTimeout(peekTimer);
+                peekTimer = setTimeout(function () {
+                    if (menu.hidden) spy.classList.remove('is-peek');
+                }, 2200);
+
+                // 상단 메뉴(About · Skills · Projects)에도 위치 표시
+                var key = null;
+                if (currentView && currentView.id !== 'view-home') key = 'projects';
+                else if (sec.id) key = sec.id;
+                for (var j = 0; j < navLinks.length; j++) {
+                    var active = navLinks[j].getAttribute('data-nav') === key;
+                    navLinks[j].classList.toggle('is-active', active);
+                    if (active) navLinks[j].setAttribute('aria-current', 'location');
+                    else navLinks[j].removeAttribute('aria-current');
+                }
+            }
+
+            function onScroll() {
+                if (!ticking) {
+                    ticking = true;
+                    requestAnimationFrame(update);
+                }
+            }
+
+            function setMenu(open) {
+                menu.hidden = !open;
+                btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                if (open) {
+                    spy.classList.add('is-peek');
+                    var cur = list.querySelector('.is-current');
+                    if (cur) cur.focus({ preventScroll: true });
+                } else {
+                    clearTimeout(peekTimer);
+                    peekTimer = setTimeout(function () { spy.classList.remove('is-peek'); }, 1200);
+                }
+            }
+
+            btn.addEventListener('click', function () { setMenu(menu.hidden); });
+
+            list.addEventListener('click', function (e) {
+                var item = e.target.closest('.spy-item');
+                if (!item) return;
+                var sec = sections[Number(item.getAttribute('data-index'))];
+                setMenu(false);
+                btn.focus({ preventScroll: true });
+                if (!sec) return;
+                var top = sec.getBoundingClientRect().top + window.scrollY;
+                window.scrollTo({ top: Math.max(0, top), behavior: reduceMotion ? 'auto' : 'smooth' });
+            });
+
+            document.addEventListener('click', function (e) {
+                if (!menu.hidden && !spy.contains(e.target)) setMenu(false);
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && !menu.hidden) {
+                    setMenu(false);
+                    btn.focus();
+                }
+            });
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll);
+            window.addEventListener('load', onScroll);
+            window.addEventListener('hashchange', function () {
+                // 화면(메인 ↔ 상세 페이지)이 바뀐 경우에만 목록을 새로 만듦
+                setTimeout(function () {
+                    if (activeView() !== currentView) {
+                        if (!menu.hidden) setMenu(false);
+                        build();
+                    } else {
+                        onScroll();
+                    }
+                }, 0);
+            });
+
+            build();
+        })();
+    </script>
+
+    <!-- Day 2 게임: '게임 시작'을 누르면 불러오고, 다른 화면으로 나가면 닫음 -->
+    <script>
+        (function () {
+            var GAME_URL = 'https://hangboak111-spec.github.io/final_bus_game/';
+            var section = document.getElementById('game-play');
+            var frame = document.getElementById('game-frame');
+            var start = document.getElementById('game-start');
+            var fsBtn = document.getElementById('game-fullscreen');
+            var closeBtn = document.getElementById('game-close');
+            if (!section || !frame || !start) return;
+
+            var canFullscreen = !!(document.fullscreenEnabled || document.webkitFullscreenEnabled);
+            var reduceMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+            // 게임 화면으로 키보드 포커스를 옮겨 SPACE가 페이지 스크롤 대신 게임에 전달되게 함
+            function focusGame() {
+                try { frame.focus({ preventScroll: true }); } catch (e) {}
+                try { if (frame.contentWindow) frame.contentWindow.focus(); } catch (e) {}
+            }
+
+            function load() {
+                if (frame.hidden) {
+                    frame.src = GAME_URL;
+                    frame.hidden = false;
+                    start.hidden = true;
+                    closeBtn.hidden = false;
+                    fsBtn.hidden = !canFullscreen;
+                }
+                focusGame();
+            }
+
+            function unload() {
+                if (frame.hidden) return;
+                var fsEl = document.fullscreenElement || document.webkitFullscreenElement;
+                if (fsEl === frame) {
+                    var exit = document.exitFullscreen || document.webkitExitFullscreen;
+                    if (exit) { try { var r = exit.call(document); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+                }
+                frame.src = 'about:blank';
+                frame.hidden = true;
+                start.hidden = false;
+                closeBtn.hidden = true;
+                fsBtn.hidden = true;
+            }
+
+            frame.addEventListener('load', function () {
+                if (!frame.hidden) focusGame();
+            });
+
+            start.addEventListener('click', load);
+
+            closeBtn.addEventListener('click', function () {
+                unload();
+                start.focus({ preventScroll: true });
+            });
+
+            fsBtn.addEventListener('click', function () {
+                var req = frame.requestFullscreen || frame.webkitRequestFullscreen;
+                if (!req) return;
+                try { var r = req.call(frame); if (r && r.catch) r.catch(function () {}); } catch (e) {}
+            });
+
+            // '게임 바로 해보기' / '게임 플레이하기' 버튼: 게임 영역으로 이동하고 바로 불러오기
+            var jumps = document.querySelectorAll('[data-game-jump]');
+            for (var i = 0; i < jumps.length; i++) {
+                jumps[i].addEventListener('click', function () {
+                    var top = section.getBoundingClientRect().top + window.scrollY;
+                    window.scrollTo({ top: Math.max(0, top), behavior: reduceMotion ? 'auto' : 'smooth' });
+                    load();
+                });
+            }
+
+            // Day 2 화면을 벗어나면 게임을 닫아 소리와 동작을 멈춤
+            window.addEventListener('hashchange', function () {
+                setTimeout(function () {
+                    var view = section.closest('main');
+                    if (view && view.hidden) unload();
+                }, 0);
+            });
         })();
     </script>
 
