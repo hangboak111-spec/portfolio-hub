@@ -442,222 +442,96 @@
             <!-- Bento Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                <!-- Day 1 (강조된 카드) : Gemini 기능 실습 -->
-                <div class="md:col-span-2 lg:col-span-3 bg-white rounded-[2rem] p-8 md:p-10 shadow-lg border border-blue-100 hover-lift relative overflow-hidden">
-                    <div class="absolute -left-20 -top-20 w-64 h-64 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full blur-3xl"></div>
-                    <div class="relative z-10">
-                        <div class="flex flex-wrap items-center gap-3 mb-6">
-                            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-extrabold tracking-wider uppercase">
-                                ⭐ Highlight
-                            </span>
-                            <span class="text-slate-400 text-xs font-bold uppercase tracking-wider">5 Activities</span>
+                <!-- Day 1 -->
+                <div class="bg-white rounded-[2rem] p-8 shadow-lg border border-slate-200 hover-lift flex flex-col">
+                    <span class="text-slate-400 text-sm font-bold block mb-2">Day 1</span>
+                    <h4 class="text-xl font-bold text-slate-900 mb-1.5 leading-snug">LLM Gemini<br>기능 실습</h4>
+                    <p class="text-xs font-bold text-blue-600 mb-6">Canvas · 영상 분석 · 이미지·영상·음악 생성</p>
+                    <dl class="space-y-4 text-sm text-slate-600 flex-1">
+                        <div>
+                            <dt class="text-slate-400 font-bold uppercase tracking-wider mb-1.5 text-xs">Problem</dt>
+                            <dd class="leading-relaxed">LLM을 실무에 제대로 쓰려면, 텍스트 대화를 넘어 Gemini가 어떤 형태의 결과물까지 만들 수 있는지 직접 확인할 필요</dd>
                         </div>
-                        <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mb-8">Day 1: LLM Gemini 기능 실습</h3>
-
-                        <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8 text-sm text-slate-600">
-                            <!-- Problem / Action / Tech / Result -->
-                            <dl class="lg:col-span-2 bg-slate-50 rounded-3xl p-6 border border-slate-100 space-y-4">
-                                <div>
-                                    <dt class="text-slate-400 font-bold uppercase tracking-wider mb-1.5 text-xs">Problem</dt>
-                                    <dd class="leading-relaxed">LLM을 실무에 제대로 쓰려면, 텍스트 대화를 넘어 Gemini가 어떤 형태의 결과물까지 만들 수 있는지 직접 확인할 필요</dd>
-                                </div>
-                                <div>
-                                    <dt class="text-slate-400 font-bold uppercase tracking-wider mb-1.5 text-xs">Action</dt>
-                                    <dd class="leading-relaxed">Canvas로 교육 기획안과 발표자료를 작성하고, 영상 분석과 이미지·영상·음악 생성 기능을 하나씩 실습</dd>
-                                </div>
-                                <div>
-                                    <dt class="text-slate-400 font-bold uppercase tracking-wider mb-1.5 text-xs">Tech</dt>
-                                    <dd class="flex flex-wrap gap-2">
-                                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-slate-700 font-medium">Gemini</span>
-                                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-slate-700 font-medium">Canvas</span>
-                                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-slate-700 font-medium">영상 분석</span>
-                                        <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-slate-700 font-medium">이미지·영상·음악 생성</span>
-                                    </dd>
-                                </div>
-                                <div>
-                                    <dt class="text-blue-500 font-bold uppercase tracking-wider mb-1.5 text-xs">Result</dt>
-                                    <dd class="bg-blue-50 text-blue-800 p-4 rounded-2xl border border-blue-100 font-medium leading-relaxed">기획안 1건, 발표자료 9장, 이미지 2장, 10초 영상, 약 3분 음악까지 5종의 결과물 완성</dd>
-                                </div>
-                            </dl>
-
-                            <!-- 만든 결과물 5종 -->
-                            <div class="lg:col-span-3">
-                                <p class="text-slate-400 font-bold uppercase tracking-wider mb-3 text-xs">Outputs</p>
-                                <ul class="space-y-3">
-                                    <li class="flex items-center gap-4 bg-white rounded-2xl p-3 pr-4 border border-slate-200">
-                                        <span class="relative w-14 h-14 rounded-xl overflow-hidden shrink-0 bg-blue-100 text-2xl flex items-center justify-center">📝</span>
-                                        <div class="min-w-0">
-                                            <p class="text-xs font-extrabold text-blue-600 tracking-wider">01 · CANVAS 문서</p>
-                                            <p class="font-bold text-slate-800 mt-0.5">대구 시니어 AI 리터러시 교육 프로그램 기획안</p>
-                                        </div>
-                                    </li>
-                                    <li class="flex items-center gap-4 bg-white rounded-2xl p-3 pr-4 border border-slate-200">
-                                        <span class="relative w-14 h-14 rounded-xl overflow-hidden shrink-0 bg-indigo-100 text-2xl flex items-center justify-center">📊
-                                            <img src="day1/slide-1.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.style.display='none'" class="absolute inset-0 w-full h-full object-cover">
-                                        </span>
-                                        <div class="min-w-0">
-                                            <p class="text-xs font-extrabold text-indigo-600 tracking-wider">02 · 영상 분석 + CANVAS 발표</p>
-                                            <p class="font-bold text-slate-800 mt-0.5">2026 현대차그룹 테크 탤런트 포럼 분석 발표자료 9장</p>
-                                        </div>
-                                    </li>
-                                    <li class="flex items-center gap-4 bg-white rounded-2xl p-3 pr-4 border border-slate-200">
-                                        <span class="relative w-14 h-14 rounded-xl overflow-hidden shrink-0 bg-pink-100 text-2xl flex items-center justify-center">🖼️
-                                            <img src="day1/birthday-invitation.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.style.display='none'" class="absolute inset-0 w-full h-full object-cover">
-                                        </span>
-                                        <div class="min-w-0">
-                                            <p class="text-xs font-extrabold text-pink-600 tracking-wider">03 · 이미지 생성</p>
-                                            <p class="font-bold text-slate-800 mt-0.5">생일 파티 초대장 · 레트로 사이버펑크 가족사진</p>
-                                        </div>
-                                    </li>
-                                    <li class="flex items-center gap-4 bg-white rounded-2xl p-3 pr-4 border border-slate-200">
-                                        <span class="relative w-14 h-14 rounded-xl overflow-hidden shrink-0 bg-amber-100 text-2xl flex items-center justify-center">🎬
-                                            <img src="day1/family-portrait-poster.jpg" alt="" loading="lazy" onerror="this.onerror=null;this.style.display='none'" class="absolute inset-0 w-full h-full object-cover">
-                                        </span>
-                                        <div class="min-w-0">
-                                            <p class="text-xs font-extrabold text-amber-600 tracking-wider">04 · 영상 생성</p>
-                                            <p class="font-bold text-slate-800 mt-0.5">옛 가족사진이 움직이는 10초 영상</p>
-                                        </div>
-                                    </li>
-                                    <li class="flex items-center gap-4 bg-white rounded-2xl p-3 pr-4 border border-slate-200">
-                                        <span class="relative w-14 h-14 rounded-xl overflow-hidden shrink-0 bg-emerald-100 text-2xl flex items-center justify-center">🎵</span>
-                                        <div class="min-w-0">
-                                            <p class="text-xs font-extrabold text-emerald-600 tracking-wider">05 · 음악 생성</p>
-                                            <p class="font-bold text-slate-800 mt-0.5">약 3분 길이의 AI 음악</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                        <div>
+                            <dt class="text-slate-400 font-bold uppercase tracking-wider mb-1.5 text-xs">Action</dt>
+                            <dd class="leading-relaxed">Canvas로 교육 기획안과 발표자료를 작성하고, 영상 분석과 이미지·영상·음악 생성 기능을 하나씩 실습</dd>
                         </div>
-
-                        <div class="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                            <p class="text-sm text-slate-500">기획안의 4주 교육 과정, 포럼 분석 슬라이드, 생성한 이미지·영상·음악을 직접 보고 들을 수 있게 정리했습니다.</p>
-                            <a href="#day1" class="inline-flex items-center justify-center gap-2 bg-slate-900 text-white font-bold text-sm py-3 px-6 rounded-xl shadow-lg hover:bg-blue-600 transition-colors shrink-0">
-                                세부 내용 보기
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
-                            </a>
+                        <div>
+                            <dt class="text-slate-400 font-bold uppercase tracking-wider mb-1.5 text-xs">Tech</dt>
+                            <dd class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium">Gemini</span><span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium">Canvas</span><span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium">영상 분석</span><span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium">이미지·영상·음악 생성</span></dd>
                         </div>
+                        <div>
+                            <dt class="text-blue-500 font-bold uppercase tracking-wider mb-1.5 text-xs">Result</dt>
+                            <dd class="bg-blue-50 text-blue-800 p-4 rounded-2xl border border-blue-100 font-medium leading-relaxed">기획안 1건, 발표자료 9장, 이미지 2장, 10초 영상, 약 3분 음악까지 5종의 결과물 완성</dd>
+                        </div>
+                    </dl>
+                    <div class="mt-6 pt-6 border-t border-slate-100">
+                        <a href="#day1" class="flex items-center justify-center gap-2 bg-slate-900 text-white font-bold text-sm py-3 px-6 rounded-xl shadow-lg hover:bg-blue-600 transition-colors">
+                            세부 내용 보기
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                        </a>
                     </div>
                 </div>
 
-                <!-- Day 2 (강조된 카드) : 포트폴리오 허브 + 자율주행 버스 게임 -->
-                <div class="md:col-span-2 lg:col-span-2 bg-white rounded-[2rem] p-8 md:p-10 shadow-lg border border-blue-100 hover-lift relative overflow-hidden">
-                    <div class="absolute -right-20 -top-20 w-64 h-64 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full blur-3xl"></div>
-                    <div class="relative z-10">
-                        <div class="flex flex-wrap items-center gap-3 mb-6">
-                            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-xs font-extrabold tracking-wider uppercase">
-                                ⭐ Highlight
-                            </span>
-                            <span class="text-slate-400 text-xs font-bold uppercase tracking-wider">2 Projects</span>
+                <!-- Day 2 -->
+                <div class="bg-white rounded-[2rem] p-8 shadow-lg border border-slate-200 hover-lift flex flex-col">
+                    <span class="text-slate-400 text-sm font-bold block mb-2">Day 2</span>
+                    <h4 class="text-xl font-bold text-slate-900 mb-1.5 leading-snug">포트폴리오 허브 &amp;<br>자율주행 버스 게임</h4>
+                    <p class="text-xs font-bold text-blue-600 mb-6">Gemini Canvas + Three.js 3D 웹 게임</p>
+                    <dl class="space-y-4 text-sm text-slate-600 flex-1">
+                        <div>
+                            <dt class="text-slate-400 font-bold uppercase tracking-wider mb-1.5 text-xs">Problem</dt>
+                            <dd class="leading-relaxed">내 역량과 프로젝트를 한눈에 보여줄 통합 페이지, 그리고 가볍게 즐길 방치형 성장 + 타이밍 액션 웹 게임 필요</dd>
                         </div>
-                        <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mb-8">Day 2: 포트폴리오 허브 구축 &amp; 자율주행 버스 게임</h3>
-
-                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 text-sm text-slate-600">
-                            <!-- 01. 포트폴리오 허브 -->
-                            <div class="bg-slate-50 rounded-3xl p-6 border border-slate-100">
-                                <div class="flex items-center gap-3 mb-5">
-                                    <span class="w-8 h-8 rounded-lg bg-blue-600 text-white text-xs font-extrabold flex items-center justify-center shrink-0">01</span>
-                                    <h4 class="text-base font-bold text-slate-800">포트폴리오 허브 구축</h4>
-                                </div>
-                                <dl class="space-y-4">
-                                    <div>
-                                        <dt class="text-slate-400 font-bold uppercase tracking-wider mb-1.5 text-xs">Problem</dt>
-                                        <dd class="leading-relaxed">단순 이력서를 넘어, 내 역량과 프로젝트 전체를 한눈에 보여줄 수 있는 통합 페이지 필요</dd>
-                                    </div>
-                                    <div>
-                                        <dt class="text-slate-400 font-bold uppercase tracking-wider mb-1.5 text-xs">Action</dt>
-                                        <dd class="leading-relaxed">LLM과 프롬프트 엔지니어링을 활용하여 맞춤형 포트폴리오 웹페이지 기획 및 구현</dd>
-                                    </div>
-                                    <div>
-                                        <dt class="text-slate-400 font-bold uppercase tracking-wider mb-1.5 text-xs">Tech</dt>
-                                        <dd class="flex flex-wrap gap-2">
-                                            <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-slate-700 font-medium">Gemini Canvas</span>
-                                            <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-slate-700 font-medium">Prompt Engineering</span>
-                                        </dd>
-                                    </div>
-                                    <div>
-                                        <dt class="text-blue-500 font-bold uppercase tracking-wider mb-1.5 text-xs">Result</dt>
-                                        <dd class="bg-blue-50 text-blue-800 p-4 rounded-2xl border border-blue-100 font-medium leading-relaxed">직무 전문성이 돋보이는 모던한 디자인의 원페이지 포트폴리오 허브 완성</dd>
-                                    </div>
-                                </dl>
-                            </div>
-
-                            <!-- 02. 자율주행 버스 게임 -->
-                            <div class="bg-slate-50 rounded-3xl p-6 border border-slate-100">
-                                <div class="flex items-center gap-3 mb-5">
-                                    <span class="w-8 h-8 rounded-lg bg-purple-600 text-white text-xs font-extrabold flex items-center justify-center shrink-0">02</span>
-                                    <h4 class="text-base font-bold text-slate-800">자율주행 버스 게임 기획·개발</h4>
-                                </div>
-                                <dl class="space-y-4">
-                                    <div>
-                                        <dt class="text-slate-400 font-bold uppercase tracking-wider mb-1.5 text-xs">Problem</dt>
-                                        <dd class="leading-relaxed">출퇴근·휴식 시간에 가볍게 즐길 수 있는, 방치형 성장과 타이밍 액션을 결합한 웹 게임 필요</dd>
-                                    </div>
-                                    <div>
-                                        <dt class="text-slate-400 font-bold uppercase tracking-wider mb-1.5 text-xs">Action</dt>
-                                        <dd class="leading-relaxed">7개 항목의 게임 기획서를 작성하고, 4차례 피드백으로 자율주행 AI·버스 4단계 진화·돌발 보행자·우주 모드까지 확장</dd>
-                                    </div>
-                                    <div>
-                                        <dt class="text-slate-400 font-bold uppercase tracking-wider mb-1.5 text-xs">Tech</dt>
-                                        <dd class="flex flex-wrap gap-2">
-                                            <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-slate-700 font-medium">Three.js</span>
-                                            <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-slate-700 font-medium">HTML/CSS/JS</span>
-                                            <span class="px-3 py-1 bg-white border border-slate-200 rounded-lg text-slate-700 font-medium">Prompt Engineering</span>
-                                        </dd>
-                                    </div>
-                                    <div>
-                                        <dt class="text-blue-500 font-bold uppercase tracking-wider mb-1.5 text-xs">Result</dt>
-                                        <dd class="bg-blue-50 text-blue-800 p-4 rounded-2xl border border-blue-100 font-medium leading-relaxed">외부 이미지 없이 3D 지오메트리만으로 구현한, 우주 모드까지 갖춘 3D 방치형 버스 게임 완성</dd>
-                                    </div>
-                                </dl>
-                            </div>
+                        <div>
+                            <dt class="text-slate-400 font-bold uppercase tracking-wider mb-1.5 text-xs">Action</dt>
+                            <dd class="leading-relaxed">프롬프트 엔지니어링으로 포트폴리오 허브를 구현하고, 7개 항목 기획서와 4차례 피드백으로 자율주행 AI·버스 4단계 진화·돌발 보행자·우주 모드까지 게임 확장</dd>
                         </div>
-
-                        <div class="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                            <p class="text-sm text-slate-500">기획서 최초 → 최종 비교, 피드백 4회 개발 과정, 버스 진화와 우주 모드까지 정리했습니다.</p>
-                            <a href="#day2" class="inline-flex items-center justify-center gap-2 bg-slate-900 text-white font-bold text-sm py-3 px-6 rounded-xl shadow-lg hover:bg-blue-600 transition-colors shrink-0">
-                                세부 내용 보기
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
-                            </a>
+                        <div>
+                            <dt class="text-slate-400 font-bold uppercase tracking-wider mb-1.5 text-xs">Tech</dt>
+                            <dd class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium">Gemini Canvas</span><span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium">Three.js</span><span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium">HTML/CSS/JS</span><span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium">Prompt Engineering</span></dd>
                         </div>
+                        <div>
+                            <dt class="text-blue-500 font-bold uppercase tracking-wider mb-1.5 text-xs">Result</dt>
+                            <dd class="bg-blue-50 text-blue-800 p-4 rounded-2xl border border-blue-100 font-medium leading-relaxed">원페이지 포트폴리오 허브와, 외부 이미지 없이 3D 지오메트리만으로 만든 우주 모드 포함 방치형 버스 게임 완성</dd>
+                        </div>
+                    </dl>
+                    <div class="mt-6 pt-6 border-t border-slate-100">
+                        <a href="#day2" class="flex items-center justify-center gap-2 bg-slate-900 text-white font-bold text-sm py-3 px-6 rounded-xl shadow-lg hover:bg-blue-600 transition-colors">
+                            세부 내용 보기
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                        </a>
                     </div>
                 </div>
 
-                <!-- Day 3 : 구글 시트 + Apps Script 지출 관리 웹앱 -->
-                <div class="bg-white rounded-[2rem] p-8 shadow-lg border border-emerald-100 hover-lift relative overflow-hidden flex flex-col">
-                    <div class="absolute -right-16 -bottom-16 w-48 h-48 bg-gradient-to-br from-emerald-100 to-blue-100 rounded-full blur-3xl"></div>
-                    <div class="relative z-10 flex flex-col flex-1">
-                        <span class="text-slate-400 text-sm font-bold block mb-2">Day 3</span>
-                        <h4 class="text-xl font-bold text-slate-900 mb-1.5 leading-snug">현대 HINT<br>지원금·중식비 관리 앱</h4>
-                        <p class="text-xs font-bold text-emerald-600 mb-6">구글 시트 + Apps Script 모바일 웹앱</p>
-                        <dl class="space-y-4 text-sm text-slate-600 flex-1">
-                            <div>
-                                <dt class="text-slate-400 font-bold uppercase tracking-wider mb-1.5 text-xs">Problem</dt>
-                                <dd class="leading-relaxed">지원금·중식비 입금일이 명확하지 않아, 매달 지원금 안에서 생활비를 계획하고 지출을 조절하기 어려움</dd>
-                            </div>
-                            <div>
-                                <dt class="text-slate-400 font-bold uppercase tracking-wider mb-1.5 text-xs">Action</dt>
-                                <dd class="leading-relaxed">문제 정의 → 시트 열 설계 → 메타 프롬프트로 PRD 작성 → AI가 만든 코드를 Apps Script에 붙여 웹앱 배포</dd>
-                            </div>
-                            <div>
-                                <dt class="text-slate-400 font-bold uppercase tracking-wider mb-1.5 text-xs">Tech</dt>
-                                <dd class="flex flex-wrap gap-2">
-                                    <span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium">Google Sheets</span>
-                                    <span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium">Apps Script</span>
-                                    <span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium">메타 프롬프팅</span>
-                                    <span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium">PRD</span>
-                                </dd>
-                            </div>
-                            <div>
-                                <dt class="text-blue-500 font-bold uppercase tracking-wider mb-1.5 text-xs">Result</dt>
-                                <dd class="bg-emerald-50 text-emerald-900 p-4 rounded-2xl border border-emerald-100 font-medium leading-relaxed">입금일을 알려주고, 그 범위 안에서 쓸 수 있도록 매일의 한도를 계산해 주는 모바일 웹앱 완성</dd>
-                            </div>
-                        </dl>
-                        <div class="mt-6 pt-6 border-t border-slate-100">
-                            <a href="#day3" class="flex items-center justify-center gap-2 bg-slate-900 text-white font-bold text-sm py-3 px-6 rounded-xl shadow-lg hover:bg-blue-600 transition-colors">
-                                세부 내용 보기
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
-                            </a>
+                <!-- Day 3 -->
+                <div class="bg-white rounded-[2rem] p-8 shadow-lg border border-slate-200 hover-lift flex flex-col">
+                    <span class="text-slate-400 text-sm font-bold block mb-2">Day 3</span>
+                    <h4 class="text-xl font-bold text-slate-900 mb-1.5 leading-snug">현대 HINT<br>지원금·중식비 관리 앱</h4>
+                    <p class="text-xs font-bold text-blue-600 mb-6">구글 시트 + Apps Script 모바일 웹앱</p>
+                    <dl class="space-y-4 text-sm text-slate-600 flex-1">
+                        <div>
+                            <dt class="text-slate-400 font-bold uppercase tracking-wider mb-1.5 text-xs">Problem</dt>
+                            <dd class="leading-relaxed">지원금·중식비 입금일이 명확하지 않아, 매달 지원금 안에서 생활비를 계획하고 지출을 조절하기 어려움</dd>
                         </div>
+                        <div>
+                            <dt class="text-slate-400 font-bold uppercase tracking-wider mb-1.5 text-xs">Action</dt>
+                            <dd class="leading-relaxed">문제 정의 → 시트 열 설계 → 메타 프롬프트로 PRD 작성 → Apps Script로 데이터 시트와 웹앱을 만들어 배포</dd>
+                        </div>
+                        <div>
+                            <dt class="text-slate-400 font-bold uppercase tracking-wider mb-1.5 text-xs">Tech</dt>
+                            <dd class="flex flex-wrap gap-2"><span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium">Google Sheets</span><span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium">Apps Script</span><span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium">메타 프롬프팅</span><span class="px-3 py-1 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium">PRD</span></dd>
+                        </div>
+                        <div>
+                            <dt class="text-blue-500 font-bold uppercase tracking-wider mb-1.5 text-xs">Result</dt>
+                            <dd class="bg-blue-50 text-blue-800 p-4 rounded-2xl border border-blue-100 font-medium leading-relaxed">입금일을 알려주고, 그 범위 안에서 쓸 수 있도록 매일의 한도를 계산해 주는 모바일 웹앱 완성</dd>
+                        </div>
+                    </dl>
+                    <div class="mt-6 pt-6 border-t border-slate-100">
+                        <a href="#day3" class="flex items-center justify-center gap-2 bg-slate-900 text-white font-bold text-sm py-3 px-6 rounded-xl shadow-lg hover:bg-blue-600 transition-colors">
+                            세부 내용 보기
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                        </a>
                     </div>
                 </div>
 
@@ -1879,12 +1753,8 @@
                     현대 HINT<br>
                     <span class="gradient-text">지원금·중식비 관리 앱</span>
                 </h1>
-                <p class="inline-flex items-start gap-2 text-sm md:text-base font-semibold text-emerald-100 bg-emerald-500/10 border border-emerald-400/30 rounded-2xl px-4 py-3 mb-6 max-w-3xl">
-                    <span aria-hidden="true">💡</span>
-                    <span>지원금·중식비 입금일을 알려주고, 그 범위 안에서 쓸 수 있도록 매일의 한도를 계산해 주는 앱</span>
-                </p>
                 <p class="text-base md:text-xl text-slate-300 font-medium max-w-3xl leading-relaxed mb-8">
-                    현대 HINT 교육생에게 지급되는 지원금과 중식비는 입금 날짜가 명확하지 않아 헷갈리기 쉽고, 매달 지원금 안에서 생활비를 계획하기 어려웠습니다. 그래서 입금 예정일을 한눈에 보여주고, 지출을 기록하면 사용 가능한 금액을 자동으로 계산해 주는 모바일 웹앱을 만들었습니다.
+                    지원금과 중식비의 입금일이 헷갈리고 생활비 계획이 어려웠던 문제를, 구글 시트에 데이터를 쌓고 Apps Script 웹앱으로 한도를 계산해 보여주는 모바일 앱으로 해결했습니다.
                 </p>
 
                 <div class="flex flex-wrap gap-3 mb-12">
@@ -1929,7 +1799,7 @@
                         </div>
                         <div>
                             <span class="block text-slate-400 font-bold uppercase tracking-wider mb-2 text-xs">Action</span>
-                            <p class="leading-relaxed">문제를 '대상-상황-불편-영향'으로 정의하고, 시트 열을 설계한 뒤 메타 프롬프트로 PRD를 완성해 AI에게 Apps Script·웹 화면 코드를 만들게 하고 웹앱으로 배포</p>
+                            <p class="leading-relaxed">문제 정의 → 시트 열 설계 → 메타 프롬프트로 PRD 작성 → Apps Script로 데이터 시트와 웹앱을 만들어 배포</p>
                         </div>
                         <div>
                             <span class="block text-slate-400 font-bold uppercase tracking-wider mb-2 text-xs">Tech</span>
@@ -1968,7 +1838,7 @@
                     </div>
                 </div>
 
-                <h3 class="text-lg font-bold text-slate-900 mb-4">만든 과정</h3>
+                <h3 class="text-lg font-bold text-slate-900 mb-4">만든 과정 6단계</h3>
 
                 <!-- 진행 흐름 -->
                 <ol class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
@@ -1976,8 +1846,8 @@
                     <li class="rounded-2xl p-4 bg-white border border-slate-200"><p class="text-xs font-extrabold text-emerald-600">STEP 2</p><p class="font-bold text-slate-800 text-sm mt-1">앱에 맡길지 판단</p><p class="text-xs text-slate-500 mt-1">반복·규칙·데이터</p></li>
                     <li class="rounded-2xl p-4 bg-white border border-slate-200"><p class="text-xs font-extrabold text-emerald-600">STEP 3</p><p class="font-bold text-slate-800 text-sm mt-1">시트 열 설계</p><p class="text-xs text-slate-500 mt-1">시트 = 데이터베이스</p></li>
                     <li class="rounded-2xl p-4 bg-white border border-slate-200"><p class="text-xs font-extrabold text-emerald-600">STEP 4</p><p class="font-bold text-slate-800 text-sm mt-1">PRD 완성</p><p class="text-xs text-slate-500 mt-1">메타 프롬프트</p></li>
-                    <li class="rounded-2xl p-4 bg-white border border-slate-200"><p class="text-xs font-extrabold text-emerald-600">STEP 5</p><p class="font-bold text-slate-800 text-sm mt-1">코드 생성</p><p class="text-xs text-slate-500 mt-1">.gs + HTML</p></li>
-                    <li class="rounded-2xl p-4 bg-white border border-slate-200"><p class="text-xs font-extrabold text-emerald-600">STEP 6</p><p class="font-bold text-slate-800 text-sm mt-1">배포·확인</p><p class="text-xs text-slate-500 mt-1">시트에 줄이 생기는지</p></li>
+                    <li class="rounded-2xl p-4 bg-white border border-slate-200"><p class="text-xs font-extrabold text-emerald-600">STEP 5</p><p class="font-bold text-slate-800 text-sm mt-1">Apps Script 작성</p><p class="text-xs text-slate-500 mt-1">시트 + 웹 화면</p></li>
+                    <li class="rounded-2xl p-4 bg-white border border-slate-200"><p class="text-xs font-extrabold text-emerald-600">STEP 6</p><p class="font-bold text-slate-800 text-sm mt-1">웹앱 배포</p><p class="text-xs text-slate-500 mt-1">시트에 기록 확인</p></li>
                 </ol>
             </div>
         </section>
@@ -1990,38 +1860,16 @@
                     <span class="text-emerald-600 font-bold uppercase tracking-widest text-sm">Problem Finding</span>
                 </div>
                 <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 mb-3">무엇을 만들지보다, 무엇이 문제인지 먼저</h2>
-                <p class="text-slate-500 mb-10 leading-relaxed">업무 자동화에서 가장 중요한 건 해결할 문제를 발굴하는 일입니다. 앱부터 정하면 표로 받기, 알림 하나 같은 더 쉬운 해결책을 놓치기 쉽습니다.</p>
+                <p class="text-slate-500 mb-10 leading-relaxed">앱부터 정하지 않고, 겉으로 보이는 불편(현상)이 아니라 그 원인부터 찾았습니다. 그 문제가 앱에 맡기기 좋은 일인지 세 조건으로 확인한 뒤 문제 정의문을 작성했습니다.</p>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
-                    <!-- 현상 vs 원인 -->
-                    <div class="rounded-3xl p-6 md:p-8 bg-slate-50 border border-slate-100">
-                        <h3 class="text-lg font-bold text-slate-900 mb-2">현상이 아니라 원인을 찾는다</h3>
-                        <p class="text-sm text-slate-500 mb-5">현상만 알면 무엇을 만들지 모르고, 원인을 알면 무엇을 바꿀지 보입니다.</p>
-                        <div class="space-y-3 text-sm">
-                            <div class="flex gap-3 items-start bg-white rounded-2xl p-4 border border-slate-200">
-                                <span class="px-2 py-0.5 rounded-md bg-slate-200 text-slate-700 text-xs font-extrabold shrink-0">현상</span>
-                                <p class="text-slate-700">겉으로 보이는 불편 · <span class="text-slate-500">"근무표 보기가 귀찮다"</span></p>
-                            </div>
-                            <div class="flex gap-3 items-start bg-white rounded-2xl p-4 border border-emerald-200">
-                                <span class="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-700 text-xs font-extrabold shrink-0">원인</span>
-                                <p class="text-slate-700">그렇게 된 이유 · <span class="text-slate-500">"근무표가 사진으로 와서 매번 내 이름을 찾는다"</span></p>
-                            </div>
-                        </div>
-                        <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mt-6 mb-2">원인을 찾는 세 가지 질문</p>
-                        <div class="flex flex-wrap gap-2 text-sm">
-                            <span class="px-3 py-1.5 rounded-full bg-white border border-slate-200 font-semibold text-slate-700">언제?</span>
-                            <span class="px-3 py-1.5 rounded-full bg-white border border-slate-200 font-semibold text-slate-700">어디서 (무엇을 할 때)?</span>
-                            <span class="px-3 py-1.5 rounded-full bg-white border border-slate-200 font-semibold text-slate-700">무엇 때문에?</span>
-                        </div>
-                    </div>
-
+                <div class="mb-10">
                     <!-- 앱에 맡기기 좋은 일 -->
                     <div class="rounded-3xl p-6 md:p-8 bg-slate-900 text-white relative overflow-hidden">
                         <div class="absolute inset-0 dot-pattern"></div>
                         <div class="relative z-10">
                             <h3 class="text-lg font-bold mb-2">앱에 맡기기 좋은 일의 세 조건</h3>
                             <p class="text-sm text-slate-400 mb-5">셋 다 맞으면 앱에 맡깁니다. 내 문제에 하나씩 대입해 봤습니다.</p>
-                            <ul class="space-y-3 text-sm">
+                            <ul class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
                                 <li class="rounded-2xl p-4 bg-white/5 border border-white/10">
                                     <p class="font-bold"><span class="text-emerald-400">✓</span> 반복 <span class="font-normal text-slate-400">· 자주, 같은 방식으로 되풀이되는가</span></p>
                                     <p class="text-slate-300 mt-1">→ 돈을 쓸 때마다 매일 기록하고 확인한다</p>
@@ -2160,7 +2008,7 @@
                     <span class="text-emerald-600 font-bold uppercase tracking-widest text-sm">Meta Prompt · PRD</span>
                 </div>
                 <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 mb-3">AI가 나에게 질문하며 PRD를 완성</h2>
-                <p class="text-slate-500 mb-10 leading-relaxed">메타 프롬프트는 '프롬프트를 만드는 프롬프트'입니다. AI가 나에게 질문을 던지며 PRD(제품 요구사항 정의서)를 채워 가고, 모르는 질문에는 모른다고 답하는 것이 중요합니다.</p>
+                <p class="text-slate-500 mb-10 leading-relaxed">메타 프롬프트는 '프롬프트를 만드는 프롬프트'입니다. AI가 던지는 질문에 답하며 PRD(제품 요구사항 정의서)를 채웠고, 모르는 질문에는 모른다고 답했습니다.</p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
                     <div class="rounded-3xl p-6 bg-rose-50 border border-rose-100">
@@ -2287,8 +2135,8 @@
                     <span class="w-9 h-9 rounded-xl bg-emerald-600 text-white text-sm font-extrabold flex items-center justify-center">04</span>
                     <span class="text-emerald-600 font-bold uppercase tracking-widest text-sm">Build · Deploy</span>
                 </div>
-                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 mb-3">AI가 만든 코드를 웹앱으로 배포</h2>
-                <p class="text-slate-500 mb-10 leading-relaxed">확정한 PRD와 함께 Apps Script 코드(.gs: doGet, 저장·조회 함수), 반응형 HTML/CSS/JS 화면, 배포 순서를 요청했습니다. Apps Script는 구글 서비스 대부분과 연결되고 바로 배포할 수 있다는 점이 장점입니다.</p>
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 mb-3">Apps Script로 데이터 시트와 웹앱 배포</h2>
+                <p class="text-slate-500 mb-10 leading-relaxed">확정한 PRD를 바탕으로 구글 시트(데이터), Apps Script(저장·조회 로직), 반응형 HTML/CSS/JS(화면)를 구성하고 웹앱으로 배포했습니다. 별도 서버 없이 구글 계정만으로 바로 배포할 수 있다는 점이 장점입니다.</p>
 
                 <ol class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
                     <li class="rounded-3xl p-6 bg-white border border-slate-200">
@@ -2298,8 +2146,8 @@
                     </li>
                     <li class="rounded-3xl p-6 bg-white border border-slate-200">
                         <span class="text-3xl font-extrabold text-emerald-200">2</span>
-                        <p class="font-bold text-slate-900 mt-1 mb-2">코드 붙여넣고 실행</p>
-                        <p class="text-sm text-slate-600 leading-relaxed">AI가 준 .gs와 HTML 코드를 붙여넣고 실행해 권한 승인</p>
+                        <p class="font-bold text-slate-900 mt-1 mb-2">코드 작성·실행</p>
+                        <p class="text-sm text-slate-600 leading-relaxed">.gs(서버)와 HTML(화면) 코드를 넣고 실행해 권한 승인</p>
                     </li>
                     <li class="rounded-3xl p-6 bg-white border border-slate-200">
                         <span class="text-3xl font-extrabold text-emerald-200">3</span>
@@ -2313,12 +2161,12 @@
                     </li>
                 </ol>
 
-                <h3 class="text-lg font-bold text-slate-900 mb-4">오류가 났을 때 이렇게 해결</h3>
+                <h3 class="text-lg font-bold text-slate-900 mb-4">오류가 났을 때 해결 방법</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
                     <div class="rounded-3xl p-6 bg-slate-50 border border-slate-100">
                         <p class="text-2xl mb-3">🧾</p>
                         <p class="font-bold text-slate-900 mb-2">에러 창 전체를 그대로</p>
-                        <p class="text-sm text-slate-600 leading-relaxed">일부만 옮기지 않고 에러 메시지 전체를 복사해 AI에게 전달</p>
+                        <p class="text-sm text-slate-600 leading-relaxed">일부만 옮기지 않고 에러 메시지 전체를 복사해 AI에게 전달해 원인 파악</p>
                     </div>
                     <div class="rounded-3xl p-6 bg-slate-50 border border-slate-100">
                         <p class="text-2xl mb-3">📄</p>
